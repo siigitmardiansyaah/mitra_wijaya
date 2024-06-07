@@ -218,13 +218,13 @@
     $('#animationModal').on('hide.bs.modal', function() {
 
         var doc = document.getElementById("tr_status");
-        if (doc.innerHTML == 'CL' || doc.innerHTML == 'RF') {
+        if (doc.innerHTML == 'CLOSE' || doc.innerHTML == 'REFUND') {
             document.getElementById("tr_status").classList.remove("badge", "bg-label-danger");
-        } else if (doc.innerHTML == 'WP') {
+        } else if (doc.innerHTML == 'PENDING') {
             document.getElementById("tr_status").classList.remove("badge", "bg-label-warning");
-        } else if (doc.innerHTML == 'OK') {
+        } else if (doc.innerHTML == 'SUCCESS') {
             document.getElementById("tr_status").classList.remove("badge", "bg-label-success");
-        } else if(doc.innerHTML == 'IP') {
+        } else if(doc.innerHTML == 'PROCESS') {
             document.getElementById("tr_status").classList.remove("badge", "bg-label-info");
         } else {
             document.getElementById("tr_status").classList.remove("badge", "bg-label-secondary");

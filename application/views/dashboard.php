@@ -14,13 +14,13 @@
                                     <div class="form-group col-md-4">
                                         <label class="col-form-label" for="basic-icon-default-fullname">Tanggal Mulai</label>
                                         <div class="input-group input-group-merge">
-                                            <input class="form-control" type="date" name="tgl_permohonan11" id="html5-date-input11" />
+                                        <input class="form-control" type="date" name="tgl_permohonan11" id="html5-date-input11"/>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="col-form-label" for="basic-icon-default-fullname">Tanggal Selesai</label>
                                         <div class="input-group input-group-merge">
-                                            <input class="form-control" type="date" name="tgl_permohonan22" id="html5-date-input22" />
+                                        <input class="form-control" type="date" name="tgl_permohonan22" id="html5-date-input22"/>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -175,14 +175,19 @@
                         <canvas id="doughnutChart" class="chartjs mb-4" data-height="100"></canvas>
                         <ul class="doughnut-legend d-flex justify-content-around ps-0 mb-2 pt-1">
                             <li class="ct-series-0 d-flex flex-column">
-                                <h5 class="mb-0">Transaksi Sukses</h5>
-                                <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgba(75, 192, 192, 0.7);width:35px; height:6px;"></span>
+                                <h6 class="mb-0">Transaksi Sukses</h6>
+                                <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgba(75, 192, 192, 0.7);width:30px; height:6px;"></span>
                                 <div class="text-muted" id="berhasil_bayar"></div>
                             </li>
                             <li class="ct-series-1 d-flex flex-column">
-                                <h5 class="mb-0">Transaksi Gagal</h5>
-                                <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgba(255, 99, 132, 0.7);width:35px; height:6px;"></span>
+                                <h6 class="mb-0">Transaksi Gagal</h6>
+                                <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgba(255, 99, 132, 0.7);width:30px; height:6px;"></span>
                                 <div class="text-muted" id="gagal_bayar"></div>
+                            </li>
+                            <li class="ct-series-2 d-flex flex-column">
+                                <h6 class="mb-0">Transaksi Pending</h6>
+                                <span class="badge badge-dot my-2 cursor-pointer rounded-pill" style="background-color: rgba(255, 255, 0, 0.7);width:30px; height:6px;"></span>
+                                <div class="text-muted" id="pending_bayar"></div>
                             </li>
                         </ul>
                     </div>

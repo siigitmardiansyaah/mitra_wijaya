@@ -44,17 +44,18 @@ class Dashboard extends CI_Controller
 
     function getRekap() {
         $tgl_1 = $this->input->post('tgl_1');
-        if($tgl_1 == '' || $tgl_1 == null) {
+        if($tgl_1 == null) {
             $tgl_1 = date('d-m-Y');
         } else {
             $tgl_1 = date('d-m-Y',strtotime($tgl_1));
         }
         $tgl_2 = $this->input->post('tgl_2');
-        if($tgl_2 == '' || $tgl_2 == null) {
+        if($tgl_2 == null) {
             $tgl_2 = date('d-m-Y');
         } else {
             $tgl_2 = date('d-m-Y',strtotime($tgl_2));
         }
+
         $query = $this->dashboard_m->getRekap($tgl_1,$tgl_2);
         echo json_encode($query);
     }
