@@ -243,6 +243,16 @@
                         </ul>
                     </li>
 
+                    <li class="menu-item <?php if ($this->uri->segment(1) == 'dana_customer') {
+                                                echo 'active';
+                                            } ?>">
+                        <a href="<?php echo base_url() ?>dana_customer" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-wallet-alt"></i>
+                            <div class="text-truncate">Dana Customer</div>
+                        </a>
+                    </li>
+
+
                     <li class="menu-item">
                         <a href="https://documenter.getpostman.com/view/5334128/2s9YsFDtdd" class="menu-link" target="_blank">
                             <i class="menu-icon tf-icons bx bx-file"></i>

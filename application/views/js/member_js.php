@@ -850,7 +850,7 @@
     }
 </script>
 <script>
-     $('#select2Basic1').change(function() {
+    $('#select2Basic1').change(function() {
         var country_id = $(this).val();
 
         // Request Ajax untuk mendapatkan kota berdasarkan negara
@@ -885,7 +885,7 @@
             method: "POST",
             dataType: "json",
             data: {
-                prov_id: country_id
+                city_id: country_id
             },
             success: function(data) {
                 // Menghapus semua option pada select box kota
