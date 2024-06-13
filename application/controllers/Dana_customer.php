@@ -170,23 +170,17 @@ class Dana_customer extends CI_Controller
     function after_regis() {
         $data['title'] = 'Dana Customer';
         $id = $this->session->userdata('login_token');
-        $query = $this->integrasi_m->getCredential($id);
-        $dat = $query->data;
-        $data['token'] = $dat->us_token;
-        $data['key'] = $dat->us_key;
-        $data['secret'] = $dat->us_secret;
-        $query1 = $this->member_m->getKategori($dat->us_key,$dat->us_token,$dat->us_secret);
-        $query2 = $this->member_m->getUsaha($dat->us_key,$dat->us_token,$dat->us_secret);
-        $query3 = $this->member_m->getProvinsi($dat->us_key,$dat->us_token,$dat->us_secret);
-
-        $data['kategori'] = $query1;
-        $data['usaha'] = $query2;
-        $data['provinsi'] = $query3;
         $dataRegis = $this->dana_customer_m->getRegis($id);
         $regis = $dataRegis->data;
+        $queryProvinsi = $this->dana_customer_m->getProvinsi($id);
+        $queryKota = $this->dana_customer_m->getKota(urlencode($regis->province),$id);
+        $queryKecamatan = $this->dana_customer_m->getKecamatan(urlencode($regis->city),$id);
+        $queryKodePOS = $this->dana_customer_m->getKodePOS(urlencode($regis->city),$id);
         $data['data'] = $regis;
-        $data['kota']= $this->member_m->getKota($dat->us_key,$dat->us_token,$dat->us_secret,$regis->province);
-        $data['kecamatan'] = $this->member_m->getKecamatan($dat->us_key,$dat->us_token,$dat->us_secret,$regis->city);
+        $data['provinsi'] = $queryProvinsi->data;
+        $data['kecamatan'] = $queryKecamatan->data;
+        $data['kota'] = $queryKota->data;
+        $data['kodepos'] = $queryKodePOS->data;
         $this->load->view('layouts/head', $data);
         $this->load->view('layouts/sidebar');
         $this->load->view('layouts/navbar');
@@ -198,7 +192,7 @@ class Dana_customer extends CI_Controller
 
     function getCity() {
         $id = $this->session->userdata('login_token');
-        $prov_id = $this->input->post('prov_id');
+        $prov_id = urlencode($this->input->post('prov_id'));
         $query1 = $this->dana_customer_m->getKota($prov_id,$id);
         $queryKota = $query1->data;
         echo json_encode($queryKota);
@@ -206,11 +200,17 @@ class Dana_customer extends CI_Controller
 
     function getDist() {
         $id = $this->session->userdata('login_token');
-        $prov_id = $this->input->post('city_id');
+        $prov_id = urlencode($this->input->post('city_id'));
         $query1 = $this->dana_customer_m->getKecamatan($prov_id,$id);
         $queryKota = $query1->data;
         echo json_encode($queryKota);
     }
 
-   
+    function getKodePOS() {
+        $id = $this->session->userdata('login_token');
+        $prov_id = urlencode($this->input->post('city_id'));
+        $query1 = $this->dana_customer_m->getKodePOS($prov_id,$id);
+        $queryKota = $query1->data;
+        echo json_encode($queryKota);
+    }
 }

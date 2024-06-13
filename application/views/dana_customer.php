@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                    <form action="<?php echo base_url() ?>dana_customer/regis_dana" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo base_url() ?>dana_customer/regis_data" method="POST" enctype="multipart/form-data">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -119,23 +119,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="col-form-label" for="basic-icon-default-fullname">Kode Pos</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="number" name="kode_pos" class="form-control" id="basic-icon-default-fullname" placeholder="Kode POS" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" required />
-                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-mail-send"></i></span>
-                                    </div>
+                                    <label for="selectpickerBasic" class="form-label">Kode POS</label>
+                                    <select id="select2Basic4" class="select2 form-select form-select-lg" data-allow-clear="true" name="kode_pos" required>
+                                        <option value="">Pilih Kode POS</option>
+
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="basic-icon-default-fullname">Nomor Telpon</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="text" name="no_telpon" class="form-control" id="basic-icon-default-fullname" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="08*******" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" required />
+                                        <input type="text" name="no_telpon" class="form-control" id="basic-icon-default-fullname" minlength="15" maxlength="15" oninput="validatePhoneNumber(this)" placeholder="628*******" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" required />
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bxl-whatsapp"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="basic-icon-default-fullname">Nomor KTP</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="text" name="no_ktp" class="form-control" id="basic-icon-default-fullname" placeholder="No KTP" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" required />
+                                        <input type="text" name="no_ktp" class="form-control" id="basic-icon-default-fullname" minlength="16" maxlength="16" placeholder="No KTP" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" required />
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-id-card"></i></span>
                                     </div>
                                 </div>

@@ -39,6 +39,13 @@
                     <form action="#" method="POST" enctype="multipart/form-data">
                         <div class="col-md-12">
                             <div class="row">
+                                <div class="form-group col-md-12" <?php if($data->status == 'pending' || $data->status == 'approve') : ?> style='display:none;' <?php endif; ?> >
+                                    <label class="col-form-label" for="basic-icon-default-fullname">Catatan Reject / Revisi</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text" name="nama_depan" class="form-control" id="basic-icon-default-fullname" placeholder="Nama Depan" aria-label="John Doe" value="<?php echo $data->catatan_revisi;?>" aria-describedby="basic-icon-default-fullname2" readonly />
+                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-note"></i></span>
+                                    </div>
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="basic-icon-default-fullname">Nama Depan</label>
                                     <div class="input-group input-group-merge">
@@ -130,10 +137,12 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="col-form-label" for="basic-icon-default-fullname">Kode Pos</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="number" name="kode_pos" class="form-control" id="basic-icon-default-fullname" value="<?php echo $data->postcode;?>" placeholder="Kode POS" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" readonly />
-                                        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-mail-send"></i></span>
-                                    </div>
+                                    <select id="select2Basic4" class="select2 form-select form-select-lg" data-allow-clear="true" name="kode_pos" disabled>
+                                        <option value="">Pilih Kode POS</option>
+                                        <?php foreach ($kodepos as $key) : ?>
+                                            <option value="<?php echo $key->KycPostcode ?>" <?php if($data->postcode == $key->KycPostcode){echo 'selected';}?>><?php echo $key->KycPostcode ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="basic-icon-default-fullname">Nomor Telpon</label>

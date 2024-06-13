@@ -38,7 +38,7 @@ class Auth extends CI_Controller
         $word_capts = str_replace("'", "", htmlspecialchars($this->security->xss_clean($this->input->post('g-recaptcha-response')), ENT_QUOTES));
         $otp = null;
         $response = $this->recaptcha->verifyResponse($word_capts);
-        if(isset($response['success']) || $response['success'] == true) { 
+        if(!empty($response['success'])) { 
              $getOTP = $this->auth_m->getOTP($email, $password, $otp);
             if ($getOTP->status_code == '500') {
                 $data = $getOTP->data;
