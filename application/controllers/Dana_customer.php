@@ -22,22 +22,28 @@ class Dana_customer extends CI_Controller
 
     function index()
     {
-        $data['title'] = 'Dana Customer';
         $id = $this->session->userdata('login_token');
-        $query = $this->integrasi_m->getCredential($id);
-        $dat = $query->data;
-        $data['token'] = $dat->us_token;
-        $data['key'] = $dat->us_key;
-        $data['secret'] = $dat->us_secret;
-        $query3 = $this->dana_customer_m->getProvinsi($id);
-        $data['provinsi'] = $query3->data;
-        $this->load->view('layouts/head', $data);
-        $this->load->view('layouts/sidebar');
-        $this->load->view('layouts/navbar');
-        $this->load->view('dana_customer', $data);
-        $this->load->view('layouts/js');
-        $this->load->view('js/dana_customer_js');
-        $this->load->view('layouts/footer');
+        $dataRegis = $this->dana_customer_m->getRegis($id);
+        $regis = $dataRegis->data;
+        if(!empty($regis) || $regis != null) {
+            redirect('dana_customer/after_regis');
+        } else {
+            $data['title'] = 'Dana Customer';
+            $query = $this->integrasi_m->getCredential($id);
+            $dat = $query->data;
+            $data['token'] = $dat->us_token;
+            $data['key'] = $dat->us_key;
+            $data['secret'] = $dat->us_secret;
+            $query3 = $this->dana_customer_m->getProvinsi($id);
+            $data['provinsi'] = $query3->data;
+            $this->load->view('layouts/head', $data);
+            $this->load->view('layouts/sidebar');
+            $this->load->view('layouts/navbar');
+            $this->load->view('dana_customer', $data);
+            $this->load->view('layouts/js');
+            $this->load->view('js/dana_customer_js');
+            $this->load->view('layouts/footer');
+        }
     }
 
     function regis_data() {
@@ -181,6 +187,7 @@ class Dana_customer extends CI_Controller
         $data['kecamatan'] = $queryKecamatan->data;
         $data['kota'] = $queryKota->data;
         $data['kodepos'] = $queryKodePOS->data;
+           
         $this->load->view('layouts/head', $data);
         $this->load->view('layouts/sidebar');
         $this->load->view('layouts/navbar');
@@ -212,5 +219,12 @@ class Dana_customer extends CI_Controller
         $query1 = $this->dana_customer_m->getKodePOS($prov_id,$id);
         $queryKota = $query1->data;
         echo json_encode($queryKota);
+    }
+
+    function getProduk() {
+        $id = $this->session->userdata('login_token');
+        $gas = $this->dana_customer_m->getProduk($id);
+        $produk = $gas->data;
+        echo json_encode($produk);
     }
 }
